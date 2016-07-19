@@ -1,10 +1,18 @@
-# Honeycomb Engineering Test - Part Two
+# Honeycomb Engineering Test - Pairing Exercise
 
 ## The challenge
 
-We have a system that delivers materials to broadcasters. We need to introduce a mechanism for applying Discounts to orders.
-Dicounts can and will change over time so we need the solution to be flexible.
+We have a system that delivers advertising materials to broadcasters. 
 
+Advertising Material is uniquely identified by a 'Clock' number e.g.
+
+* `WNP/SWCL001/010`
+* `ZDW/EOWW005/010`
+
+Our sales team have some new promotions they want to offer so 
+we need to introduce a mechanism for applying Discounts to orders.
+
+Promotions like this can and will change over time so we need the solution to be flexible.
 
 ### Broadcasters
 
@@ -24,19 +32,16 @@ These are the Broadcasters we deliver to
 * Standard Delivery: $10
 * Express Delivery: $20
 
-
 ### Discounts
 
 * Send 2 or more materials via express delivery and the price for express delivery drops to $15
 * Spend over $30 to get 10% off
-
 
 ### What we want from you
 
 Provide a means of defining and applying various discounts to the cost of delivering material to broadcasters.
 
 We don't need any UI for this, we just need you to show us how it would work through its API.
-
 
 ## Examples
 
