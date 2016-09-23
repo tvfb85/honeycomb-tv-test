@@ -1,4 +1,4 @@
-# Honeycomb Engineering Test - Pairing Exercise
+# Honeycomb Engineering Test - Makers Edition
 
 ## The challenge
 
