@@ -22,18 +22,18 @@ broadcaster_7 = Broadcaster.new(7, 'Horse and Country')
 clock_number_one = Material.new('WNP/SWCL001/010')
 clock_number_two = Material.new('ZDW/EOWW005/010')
 
-promo_one = PromoMultiBuy.new('Express Multibuy offer', 15)
+promo_one = PromoMultiBuy.new('Express Multibuy offer', 5)
 promo_two = PromoDiscount.new('10 percent off 30', 0, 10)
 
 order = Order.new(promo_one, promo_two)
 
-order.add clock_number_one, broadcaster_2, standard_delivery
-order.add clock_number_one, broadcaster_3, standard_delivery
-order.add clock_number_one, broadcaster_1, standard_delivery
-order.add clock_number_one, broadcaster_7, express_delivery
-# order.add clock_number_two, broadcaster_2, express_delivery
-# order.add clock_number_two, broadcaster_3, express_delivery
-# order.add clock_number_two, broadcaster_1, express_delivery
+# order.add clock_number_one, broadcaster_2, standard_delivery
+# order.add clock_number_one, broadcaster_3, standard_delivery
+# order.add clock_number_one, broadcaster_1, standard_delivery
+# order.add clock_number_one, broadcaster_7, express_delivery
+order.add clock_number_two, broadcaster_2, express_delivery
+order.add clock_number_two, broadcaster_3, express_delivery
+order.add clock_number_two, broadcaster_1, express_delivery
 
 print order.output
 print "\n"

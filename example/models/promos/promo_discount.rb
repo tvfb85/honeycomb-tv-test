@@ -7,12 +7,12 @@ class PromoDiscount
     self.pct_discount = pct_discount
   end
 
-  def qualifies_for_discount(order)
-    order.total_cost > min_spend
+  def qualifies_for_discount(sub_total)
+    sub_total > min_spend
   end
 
-  def calculate_discount(order)
-    order.total_cost / pct_discount
+  def calculate_discount(sub_total)
+    sub_total / pct_discount
   end
 
 end

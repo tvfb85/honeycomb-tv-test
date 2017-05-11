@@ -18,14 +18,6 @@ class Order
     material_already_in_order?(material) ? items[material] << Item.new(broadcaster, delivery) : items[material] = [Item.new(broadcaster, delivery)]
   end
 
-  def material_already_in_order?(material)
-    items.has_key? material
-  end
-
-  def total_cost
-    items.inject(0) { |memo, (_, delivery)| memo += delivery.price }
-  end
-
   def output
     [].tap do |result|
       result << "Order summary:"
@@ -46,15 +38,29 @@ class Order
 
       result << output_separator
       result << "Sub-total: $#{sub_total_cost}"
-      # result << "Total: $#{total_cost(sub_total_cost)}"
+      result << "Total: $#{total_cost}"
     end.join("\n")
   end
-
-  private
 
   def sub_total_cost
     sub_total = 0
     items.each_pair { |k, v| sub_total += v.inject(0) { |memo, (_, delivery)| memo += _.delivery.price } }
+    sub_total
+  end
+
+  def total_cost
+    items.empty? == true ? 0 : apply_discounts(sub_total_cost)
+  end
+
+  private
+
+  def material_already_in_order?(material)
+    items.has_key? material
+  end
+
+  def apply_discounts(sub_total)
+    sub_total -= promo_one.calculate_discount(items) if promo_one.qualifies_for_discount(items)
+    sub_total -= promo_two.calculate_discount(sub_total) if promo_two.qualifies_for_discount(sub_total)
     sub_total
   end
 
