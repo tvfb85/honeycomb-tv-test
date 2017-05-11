@@ -1,10 +1,13 @@
 require './models/broadcaster'
 require './models/delivery'
 require './models/material'
+require './models/item'
 require './models/order'
 
 describe Order do
-  subject { Order.new material }
+  subject { Order.new promo_one, promo_two }
+  let(:promo_one) { PromoMultiBuy.new 'Express Multibuy Offer', 15 }
+  let(:promo_two) { PromoDiscount.new '10 percent off 30', 30, 10 }
   let(:material) { Material.new 'HON/TEST001/010' }
   let(:standard_delivery) { Delivery.new(:standard, 10) }
   let(:express_delivery) { Delivery.new(:express, 20) }
@@ -20,10 +23,10 @@ describe Order do
       broadcaster_1 = Broadcaster.new(1, 'Viacom')
       broadcaster_2 = Broadcaster.new(2, 'Disney')
 
-      subject.add broadcaster_1, standard_delivery
-      subject.add broadcaster_2, express_delivery
+      subject.add material, broadcaster_1, standard_delivery
+      subject.add material, broadcaster_2, standard_delivery
 
-      expect(subject.total_cost).to eq(30)
+      expect(subject.total_cost).to eq(20)
     end
   end
 end
