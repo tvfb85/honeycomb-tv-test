@@ -5,6 +5,7 @@ require './models/delivery'
 require './models/material'
 require './models/promos/promo_discount'
 require './models/promos/promo_multibuy'
+require './models/item'
 require './models/order'
 
 standard_delivery = Delivery.new(:standard, 10.0)
@@ -24,7 +25,7 @@ clock_number_two = Material.new('ZDW/EOWW005/010')
 promo_one = PromoMultiBuy.new('Express Multibuy offer', 15)
 promo_two = PromoDiscount.new('10 percent off 30', 0, 10)
 
-order = Order.new()
+order = Order.new(promo_one, promo_two)
 
 order.add clock_number_one, broadcaster_2, standard_delivery
 order.add clock_number_one, broadcaster_3, standard_delivery
