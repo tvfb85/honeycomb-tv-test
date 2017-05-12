@@ -14,7 +14,7 @@ describe Order do
 
   context 'empty' do
     it 'costs nothing' do
-      expect(subject.total_cost).to eq(0)
+      expect(subject.output).to include "Total: $0"
     end
   end
 
@@ -26,7 +26,9 @@ describe Order do
       subject.add material, broadcaster_1, standard_delivery
       subject.add material, broadcaster_2, standard_delivery
 
-      expect(subject.total_cost).to eq(20)
+      expect(subject.output).to include "Total: $20"
     end
+
   end
+
 end

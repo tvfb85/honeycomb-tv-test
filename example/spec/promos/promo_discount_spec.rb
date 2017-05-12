@@ -18,13 +18,14 @@ describe PromoDiscount do
   end
 
   it 'knows the percentage discount on offer' do
-    expect(subject.min_spend).to eq 30
+    expect(subject.pct_discount).to eq 10
   end
 
   context 'order does not qualify' do
 
     it 'knows when the order does not qualify' do
-      expect(subject.qualifies_for_discount(order.sub_total_cost)).to eq false
+      sub_total_cost = 0
+      expect(subject.qualifies_for_discount(sub_total_cost)).to eq false
     end
 
   end
@@ -34,15 +35,16 @@ describe PromoDiscount do
     before(:each) do
       order.add material, broadcaster_1, express_delivery
       order.add material, broadcaster_2, express_delivery
-      # allow(order).to receive(:qualifies_for_discount).with(sub_total_cost).and_return(40)
     end
 
     it 'checks whether the order qualifies for discount' do
-      expect(subject.qualifies_for_discount(order.sub_total_cost)).to eq true
+      sub_total_cost = 40
+      expect(subject.qualifies_for_discount(sub_total_cost)).to eq true
     end
 
     it 'calculates the discount' do
-      expect(subject.calculate_discount(order.sub_total_cost)).to eq 4
+      sub_total_cost = 40
+      expect(subject.calculate_discount(sub_total_cost)).to eq 4
     end
 
   end
