@@ -16,8 +16,8 @@ class PromoMultiBuy
 
   def count_express_items(items)
     count = 0
-    items.each_pair do |k, v|
-      count += v.count { |item| item.delivery.name == :express }
+    items.each_pair do | clock_num, sub_items |
+      count += sub_items.count { |item| item.delivery.name == :express }
     end
     count
   end
